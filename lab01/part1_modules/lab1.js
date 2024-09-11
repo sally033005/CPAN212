@@ -16,5 +16,8 @@ holidays.forEach(holiday =>{
 const randomHoliday = _.sample(holidays);
 console.log(randomHoliday)
 
-const indexHoliday = _.findIndex(holidays, {name: "Christmas"});
-console.log(indexHoliday)
+const indexChristmas = _.findIndex(holidays, {name: "Christmas"});
+console.log(indexChristmas)
+
+const indexCanadaDay = _.findIndex(holidays, {name: "Canada Day"});
+console.log(indexCanadaDay)
