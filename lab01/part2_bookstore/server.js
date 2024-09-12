@@ -1,11 +1,11 @@
-const http = require("http")
-const fs = require("fs")
-const path = require("path")
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
 const PORT = process.env.PORT || 8000;
  
 const server = http.createServer((req, res) => {
 
-    if(req.url === "/"){
+    if(req.url === "/" || req.url === "/home"){
         fs.readFile(path.join(__dirname, "pages", "home.html"), "utf8", (err, data) => {
             if (err) {
                 res.writeHead(404, { "Content-Type": "text/plain" });
@@ -66,12 +66,11 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.write(data);
             res.end();
-
+        });
     }
-  )};
+  });
  
  
   server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
-});
 });
