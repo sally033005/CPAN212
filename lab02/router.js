@@ -19,29 +19,29 @@ router.get("/add/:x/:y", (req, res)=>{
 });
 
 
-router.get("/calculate/:x/:y/:op", (req, res)=>{
+router.get("/calculate/:a/:b/:op", (req, res)=>{
     console.log(req.params)
-    let x = req.params.x
-    let y = req.params.y
+    let a = req.params.x
+    let b = req.params.y
     let op = req.params.op
 
     // let {x, y, op} = req.params.x.y.op
 
     switch(op){
         case '+': 
-            res.send(JSON.stringify(parseFloat(x) + parseFloat(y)))
+            res.send(JSON.stringify(parseFloat(a) + parseFloat(b)))
             break;
         case '-': 
-            res.send(JSON.stringify(parseFloat(x) - parseFloat(y)))
+            res.send(JSON.stringify(parseFloat(a) - parseFloat(b)))
             break;
         case '*': 
-            res.send(JSON.stringify(parseFloat(x) * parseFloat(y)))
+            res.send(JSON.stringify(parseFloat(a) * parseFloat(b)))
             break;
         case '/': 
-            res.send(JSON.stringify(parseFloat(x) / parseFloat(y)))
+            res.send(JSON.stringify(parseFloat(a) / parseFloat(b)))
             break;
         case '**': 
-            res.send(JSON.stringify(parseFloat(x) ** parseFloat(y)))
+            res.send(JSON.stringify(parseFloat(a) ** parseFloat(b)))
             break;
         default:
             res.send("invalid operation")
