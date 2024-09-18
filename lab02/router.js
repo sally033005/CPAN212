@@ -19,26 +19,32 @@ router.get("/add/:x/:y", (req, res)=>{
 });
 
 
-router.get("/calculate/:x/:y/:o", (req, res)=>{
+router.get("/calculate/:x/:y/:op", (req, res)=>{
     console.log(req.params)
-    switch(req.params.o){
+    let x = req.params.x
+    let y = req.params.y
+    let op = req.params.op
+
+    // let {x, y, op} = req.params.x.y.op
+
+    switch(op){
         case '+': 
-            res.send(JSON.stringify(parseFloat(req.params.x) + parseFloat(req.params.y)))
+            res.send(JSON.stringify(parseFloat(x) + parseFloat(y)))
             break;
         case '-': 
-            res.send(JSON.stringify(parseFloat(req.params.x) - parseFloat(req.params.y)))
+            res.send(JSON.stringify(parseFloat(x) - parseFloat(y)))
             break;
         case '*': 
-            res.send(JSON.stringify(parseFloat(req.params.x) * parseFloat(req.params.y)))
+            res.send(JSON.stringify(parseFloat(x) * parseFloat(y)))
             break;
         case '/': 
-            res.send(JSON.stringify(parseFloat(req.params.x) / parseFloat(req.params.y)))
+            res.send(JSON.stringify(parseFloat(x) / parseFloat(y)))
             break;
         case '**': 
-            res.send(JSON.stringify(parseFloat(req.params.x) ** parseFloat(req.params.y)))
+            res.send(JSON.stringify(parseFloat(x) ** parseFloat(y)))
             break;
         default:
-            res.send("invalid operator")
+            res.send("invalid operation")
     }
 });
 
@@ -50,6 +56,7 @@ router.get("/calculate/:x/:y/:o", (req, res)=>{
 
 
 //  add + : localhost:8000/calculate/10/2/%2B
+//divisiom / : localhost:8000/calculate/10/2/%2F
 
 
 module.exports = router;
