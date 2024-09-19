@@ -21,8 +21,8 @@ router.get("/add/:x/:y", (req, res)=>{
 
 router.get("/calculate/:a/:b/:op", (req, res)=>{
     console.log(req.params)
-    let a = req.params.x
-    let b = req.params.y
+    let a = req.params.a
+    let b = req.params.b
     let op = req.params.op
 
     // let {x, y, op} = req.params.x.y.op
