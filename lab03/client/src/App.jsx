@@ -4,6 +4,7 @@ function App() {
   const [singleFile, setSingleFile] = useState(null); // variable
   const [multipleFiles, setMultipleFiles] = useState([]);
   const [fetchedSingleFile, setFetchedSingleFile] = useState(null);
+  const [fetchedMultipleFiles, setFetchedMultipleFiles] = useState([]);
 
   // Handle file input for single upload
   const handleSingleFileChange = (e) => {
@@ -16,6 +17,20 @@ function App() {
 
   // Fetch a random single file from the server
   const fetchSingleFile = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/fetch/single');
+      const blob = await response.blob();
+      console.log(blob);
+      const url = URL.createObjectURL(blob);
+      console.log(url);
+
+      setFetchedSingleFile(url);
+    } catch (error) {
+      console.error('Error fetching single file:', error);
+    }
+  };
+
+  const fetchMultipleFiles = async () => {
     try {
       const response = await fetch('http://localhost:8000/fetch/single');
       const blob = await response.blob();
@@ -86,6 +101,16 @@ function App() {
           <div>
             <h3>Single File</h3>
             <img src={fetchedSingleFile} alt="Fetched Single" style={{ width: '200px', marginTop: '10px' }} />
+          </div>
+        )}
+      </div>
+      <div>
+        <h2>Fetch Multiple File</h2>
+        <button onClick={fetchMultipleFiles}>Fetch Multiple Files</button>
+        {fetchedMultipleFiles && (
+          <div>
+            <h3>Multiple Files</h3>
+            <img src={fetchedMultipleFiles} alt="Fetched Multiple" style={{ width: '200px', marginTop: '10px' }} />
           </div>
         )}
       </div>

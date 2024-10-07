@@ -57,6 +57,17 @@ app.get("/fetch/single", (req, res) => {
     res.sendFile(path.join(__dirname, "uploads", filename));
 });
 
+app.get("/fetch/multiple", (req, res) => {
+    let files_array = fs.readdirSync(path.join(__dirname, "uploads"));
+    if (files_array.length == 0) {
+        return res.status(503).send({
+            message: "No images",
+        });
+    }
+    let filename = _.sample(files_array);
+    res.sendFile(path.join(__dirname, "uploads", filename));
+});
+
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
