@@ -1,53 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./app.css";
 
 function App() {
-  const [singleFile, setSingleFile] = useState(null); // variable
+  const [singleFile, setSingleFile] = useState(null);
   const [multipleFiles, setMultipleFiles] = useState([]);
-  const [fetchedSingleFile, setFetchedSingleFile] = useState(null);
-  const [fetchedMultipleFiles, setFetchedMultipleFiles] = useState([]);
+  const [fetchedSingleFiles, setFetchedSingleFiles] = useState(null);
+  const [fetchedFiles, setFetchedFiles] = useState(null);
+  const [dogImageUrl, setDogImageUrl] = useState(null);
 
   // Handle file input for single upload
   const handleSingleFileChange = (e) => {
     setSingleFile(e.target.files[0]);
   };
 
+  // Handle file input for multiple uploads
   const handleMultipleFilesChange = (e) => {
     setMultipleFiles(e.target.files);
-  };
-
-  // Fetch a random single file from the server
-  const fetchSingleFile = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/fetch/single');
-      const blob = await response.blob();
-      console.log(blob);
-      const url = URL.createObjectURL(blob);
-      console.log(url);
-
-      setFetchedSingleFile(url);
-    } catch (error) {
-      console.error('Error fetching single file:', error);
-    }
-  };
-
-  const fetchMultipleFiles = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/fetch/single');
-      const blob = await response.blob();
-      console.log(blob);
-      const url = URL.createObjectURL(blob);
-      console.log(url);
-
-      setFetchedSingleFile(url);
-    } catch (error) {
-      console.error('Error fetching single file:', error);
-    }
   };
 
   // Upload a single file to the server
   const uploadSingleFile = async () => {
     const formData = new FormData();
     formData.append("file", singleFile);
+
     try {
       const response = await fetch("http://localhost:8000/save/single", {
         method: "POST",
@@ -64,61 +39,190 @@ function App() {
   const uploadMultipleFiles = async () => {
     const formData = new FormData();
     for (let i = 0; i < multipleFiles.length; i++) {
-      formData.append('files', multipleFiles[i]);
+      formData.append("files", multipleFiles[i]);
     }
 
     try {
-      const response = await fetch('http://localhost:8000/save/multiple', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/save/multiple", {
+        method: "POST",
         body: formData,
       });
       const data = await response.json();
       alert(data.message);
     } catch (error) {
-      console.error('Error uploading multiple files:', error);
+      console.error("Error uploading multiple files:", error);
     }
   };
 
+  // Upload dog image to the server
+  const uploadDogImage = async () => {
+    if (!dogImageUrl) {
+      alert("No dog image to upload!");
+      return;
+    }
+    try {
+      const response = await fetch(dogImageUrl);
+      const blob = await response.blob();
+      const formData = new FormData();
+      formData.append("file", blob, "dogImage.jpg");  
+
+      const uploadResponse = await fetch("http://localhost:8000/save/single", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await uploadResponse.json();
+      alert(result.message);  
+    } catch (error) {
+      console.error("Error uploading dog image:", error);
+    }
+  };
+
+  // Fetch a random single file from the server
+  const fetchSingleFile = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/fetch/single");
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      setFetchedSingleFiles(url);
+    } catch (error) {
+      console.error("Error fetching single file:", error);
+    }
+  };
+
+  const fetchMultipleFiles = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/fetch/multiple");
+      const data = await response.json();
+
+      const fileData = data.files.map((file) => {
+        const base64URL = `data:application/octet-stream;base64,${file.data}`;
+        return {
+          filename: file.filename,
+          url: base64URL,
+        };
+      });
+      setFetchedFiles(fileData);
+    } catch (error) {
+      console.error("Error fetching multiple files:", error);
+    }
+  };
+
+  const fetchRandomDogImage = async () => {
+    try {
+      const response = await fetch("https://dog.ceo/api/breeds/image/random");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setDogImageUrl(data.message); // Update state with the image URL
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  };
+
+  //  Cannot work on this yet, not until we learn static files and allowing file access
+  // const fetchMultipleFiles = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:8000/fetch/multiple");
+  //     const data = await response.json();
+
+  //     const fileUrls = await Promise.all(
+  //       data.files.map(async (file) => {
+  //         const fileResponse = await fetch(file);
+  //         const blob = await fileResponse.blob();
+  //         return URL.createObjectURL(blob);
+  //       })
+  //     );
+  //     console.log(fileUrls)
+  //     setFetchedFiles(fileUrls);
+  //   } catch (error) {
+  //     console.error("Error fetching single file:", error);
+  //   }
+  // };
+
   return (
-    <>
-      <h1>File Upload and Fetch App</h1>
+    <div className="container">
+      <div style={{ padding: "20px" }}>
+        <h1>File Upload and Fetch App</h1>
 
-      {/* Section for uploading single file */}
-      <div>
-        <h2>Upload Single File</h2>
-        <input type="file" onChange={handleSingleFileChange} />
-        <button onClick={uploadSingleFile}>Upload Single File</button>
-      </div>
-      <div>
-        <h2>Upload Multiple Files</h2>
-        <input type="file" multiple onChange={handleMultipleFilesChange} />
-        <button onClick={uploadMultipleFiles}>Upload Multiple Files</button>
-      </div>
-      <div>
-        <h2>Fetch Single File</h2>
-        <button onClick={fetchSingleFile}>Fetch Single File</button>
-        {fetchedSingleFile && (
-          <div>
-            <h3>Single File</h3>
-            <img src={fetchedSingleFile} alt="Fetched Single" style={{ width: '200px', marginTop: '10px' }} />
+        {/* Section for uploading single file */}
+        <div className="file-upload-container">
+          <h2>Upload Single File</h2>
+          <input type="file" onChange={handleSingleFileChange} />
+          <button onClick={uploadSingleFile}>Upload Single File</button>
+        </div>
+
+        {/* Section for uploading multiple files */}
+        <div className="file-upload-container">
+          <h2>Upload Multiple Files</h2>
+          <input type="file" multiple onChange={handleMultipleFilesChange} />
+          <button onClick={uploadMultipleFiles}>Upload Multiple Files</button>
+        </div>
+
+        {/* Section for fetching and displaying a single file */}
+        <div>
+          <h2>Fetch Single File</h2>
+          <br></br>
+          <div className="fetch-container">
+            <button onClick={fetchSingleFile}>Fetch Single File</button>
+            {fetchedSingleFiles && (
+              <div>
+                <h3>Single File</h3>
+                <img
+                  src={fetchedSingleFiles}
+                  alt="Fetched Single"
+                />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <div>
-        <h2>Fetch Multiple File</h2>
-        <button onClick={fetchMultipleFiles}>Fetch Multiple Files</button>
-        {fetchedMultipleFiles && (
-          <div>
-            <h3>Multiple Files</h3>
-            <img src={fetchedMultipleFiles} alt="Fetched Multiple" style={{ width: '200px', marginTop: '10px' }} />
+        </div>
+
+        {/* Section for fetching and displaying multiple files */}
+        <div>
+          <h2>Fetch Multiple Files</h2>
+          <div className="fetch-container">
+            <button onClick={fetchMultipleFiles}>Fetch Multiple File</button>
+            {fetchedFiles && (
+              <div className="fetch-multiple-files">
+                <h3>Multiple Files</h3>
+                {fetchedFiles.map((file, index) => (
+                  <div key={index}>
+                    <p>{file.filename}</p>
+                    <img
+                      src={file.url}
+                      alt={file.filename}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        </div>
+
+        {/* Section for fetching dog images */}
+        <div>
+          <h2>Fetch Dog Image</h2>
+          <div className="fetch-container">
+            <button onClick={fetchRandomDogImage}>Fetch Dog Image</button>
+            {dogImageUrl && (
+              <div className="fetch-dog-image">
+                <h3>Dog Image</h3>
+                <img
+                  src={dogImageUrl}
+                  alt="Random Dog"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="file-upload-container">
+          <h2>Upload Dog Image to Server</h2>
+          <button onClick={uploadDogImage}>Upload Dog Image</button>
+        </div>
       </div>
-
-
-    </>
+    </div>
   );
 }
 
 export default App;
-
