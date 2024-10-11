@@ -4,6 +4,8 @@
   align-items: center; /* Centers vertically */
   min-height: 100vh; /* Full height of the viewport */
   padding: 40px;
+  background-color: beige;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Styling for the fetch section */
@@ -12,6 +14,9 @@
   flex-direction: column; /* Stack button and image vertically */
   align-items: center; /* Center them horizontally */
   margin-top: 20px;
+  background-color: khaki;
+  padding: 30px;
+  border-radius: 40%;
 }
 
 .fetch-container img {
@@ -39,7 +44,12 @@
   display: flex;
   flex-direction: column; /* Stack items vertically */
   align-items: center; /* Center them horizontally */
+  margin-top: 20px;
   margin-bottom: 20px;
+  background-color: bisque;
+  border-radius: 60%;
+  padding: 30px;
+
 }
 
 .file-upload-container input {
@@ -52,6 +62,7 @@ h3 {
   text-align: center; /* Centers the headers */
   font-family: Arial, sans-serif;
   margin-bottom: 20px;
+  color: darkred;
 }
 
 input {
@@ -67,4 +78,20 @@ input {
 button:hover {
   background-color: #0056b3;
   transition: background-color 1s ease;
+}
+
+button {
+  color: brown;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: chocolate;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
