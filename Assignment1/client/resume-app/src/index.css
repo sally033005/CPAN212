@@ -68,12 +68,20 @@ button:focus-visible {
     text-align: center;
     margin: 0 auto;
   }
-  .section__pic-container {
-    display: flex; 
-    justify-content: center; 
-    margin: 0 auto; 
-    height: 30%;
-    width: auto; 
+  @media (max-width: 768px) {
+    .section__pic-container {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      margin: 0 auto; 
+      height: auto; 
+      width: auto; 
+    }
+    .section__pic-container img {
+      width: 80%; 
+      height: auto; 
+      object-fit: cover; 
+    }
   }
   .nav-links {
     padding: 0;
