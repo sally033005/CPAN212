@@ -51,8 +51,8 @@ a:hover {
 
 .home-container .section__pic-container {
   display: flex;
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: auto;
   margin: auto 0;
 }
 
