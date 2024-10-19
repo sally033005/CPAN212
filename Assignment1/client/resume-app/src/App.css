@@ -230,9 +230,9 @@ body .overview-container {
 }
 
 .education-item-h3 {
-  font-size: 22px;
-  margin: 0;
-  color: #1D3557; 
+  font-size: 20px;
+  font-weight: bold;
+  color: #1D3557;
 }
 
 .education-item p {
