@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import '../app.css';  
 
 const Education = () => {
   const [education, setEducation] = useState([]);
@@ -14,9 +15,11 @@ const Education = () => {
     <div className="education-section">
       <h2>Education</h2>
       {education.map((edu, index) => (
-        <div key={index}>
-          <h3>{edu.school}</h3>
-          <p>{edu.degree} - {edu.year}</p>
+        <div key={index} className="education-item">
+          <h3 className="education-item-h3">{edu.degree}</h3>
+          <p><strong>{edu.school}</strong></p>
+          {edu.honors && <p className="education-item-em"><em>{edu.honors}</em></p>}
+          <p>{edu.graduation}</p>
         </div>
       ))}
     </div>
