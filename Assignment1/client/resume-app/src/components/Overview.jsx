@@ -14,9 +14,9 @@ const Overview = () => {
   return (
       <div className="overview-container">
       <h2>About me</h2>
-      <p>{overview.introduction}</p>
+      <p className='about-container'>{overview.introduction}</p>
       <h2>Career Goal</h2>
-      <p>{overview.goal}</p>
+      <p className='about-container'>{overview.goal}</p>
 
       <h2>Skills</h2>
       <div className="skills-container">
