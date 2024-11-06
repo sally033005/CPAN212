@@ -90,7 +90,7 @@ app.get("/book/basic-search", (req, res) => {
 });
 
 app.get("/book/advance-search", (req, res) => {
-    http://localhost:8001/book/advance-search?title=The%20Great%20Gatsby
+    //http://localhost:8001/book/advance-search?title=The%20Great%20Gatsby
     let filter = {}
     if (req.query.title) {
         filter.title = req.query.title
