@@ -26,6 +26,7 @@ function Login() {
       if (response.ok) {
         // If login is successful, navigate to the homepage
         console.log(result);
+        localStorage.setItem("token", result.token);
         navigate("/");
       } else {
         // Handle login errors

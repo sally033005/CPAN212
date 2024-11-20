@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("../models/book");
+const verifyToken = require("../middlewares/verifyToken");
 
-router.get("/fetch-all", (req, res) => {
+router.get("/fetch-all", verifyToken, (req, res) => {
   Book.find({},{title:1, author:1, price:1})
     .then((books) => {
       res.json(books); // Return the fetched books as JSON
