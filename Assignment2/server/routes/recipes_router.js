@@ -4,7 +4,7 @@ const Recipe = require("../models/recipe");
 
 // GET route to fetch all recipes [/recipe]
 router.get("/", (req, res) => { 
-    Recipe.find({})
+    Recipe.find()
         .then((recipes) => {
             res.json(recipes); 
         })
