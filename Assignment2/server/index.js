@@ -1,5 +1,3 @@
-// npm i
-// npm i express-session connect-mongo
 // npm i cors express nodemon mongoose dotenv
 
 require("dotenv").config();

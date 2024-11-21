@@ -3,10 +3,10 @@ const router = express.Router();
 const Recipe = require("../models/recipe");
 
 // GET route to fetch all recipes [/recipe]
-router.get("/", (req, res) => { // Notice the corrected route here
+router.get("/", (req, res) => { 
     Recipe.find({})
         .then((recipes) => {
-            res.json(recipes); // Respond with fetched recipes
+            res.json(recipes); 
         })
         .catch((err) => {
             res.status(500).send({ message: "Error fetching recipes", error: err.message });
@@ -48,7 +48,7 @@ router.get("/:id", (req, res) => {
         res.json(recipe);
     })
     .catch((err) => {
-        res.status(500).send(err); // Handle error
+        res.status(500).send(err);
     });
 });
 
@@ -63,7 +63,7 @@ router.put("/:id", (req, res) => {
         res.json(updatedRecipe);
     }) 
     .catch((err) => {
-        res.status(500).send(err); // Handle error
+        res.status(500).send(err); 
     });
 });
     
@@ -77,7 +77,7 @@ router.delete("/:id", (req, res) => {
         res.json(deletedRecipe);
     })
     .catch((err) => {
-        res.status(500).send(err); // Handle error
+        res.status(500).send(err);
     });
 });
 
