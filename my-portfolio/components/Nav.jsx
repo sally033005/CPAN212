@@ -20,19 +20,20 @@ const Links = [
         name: 'contact',
         path: '/contact',
     }
-]
+];
 
 const Nav = () => {
     const pathname = usePathname();
-    return(
-    <nav className='flex gap-8'>
-        {Links.map((link, index) => {
-            return <Link href={link.path} key={index} className={`${link.path === pathname && 
-            "text-accent border-b-2 border-accent"} capitalize font-midium hover:text-accent transition-all`}>
-                {link.name}
+    return (
+        <nav className='flex gap-8'>
+            {Links.map((link, index) => {
+                return <Link href={link.path} key={index} className={`${link.path === pathname &&
+                    "text-accent border-b-2 border-accent"} capitalize font-midium hover:text-accent transition-all`}>
+                    {link.name}
                 </Link>
-        })}
-    </nav>
-    )};
+            })}
+        </nav>
+    )
+};
 
 export default Nav;
