@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { BsArrow90DegRight, BsGithub } from 'react-icons/bs';
 import { MdOutlineSmartDisplay } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
