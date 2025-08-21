@@ -14,13 +14,12 @@ const Home = () => {
           <div className='text-center xl:text-left order-2 xl:order-none '>
             <span className='text-xl'>Full Stack Developer | Computer Programming Graduate</span>
             <h1 className='h1 mb-6'>
-              Hello I'm <br /> <span className='text-accent'>Sally Cheung</span>
+              Hello {"I'm"} <br /> <span className='text-accent'>Sally Cheung</span>
             </h1>
             <p className='max-w-[500px] mb-9 text-white/80 '>
-            I&apos;m a Computer Programming graduate from Humber College with experience in full-stack development. 
-            I enjoy building responsive web applications using modern frameworks like Next.js, React, and Spring Boot. 
-            My goal is to create user-friendly, scalable solutions while continuously learning new technologies.
+              {"I'm a Computer Programming graduate from Humber College with experience in full-stack development. I enjoy building responsive web applications using modern frameworks like Next.js, React, and Spring Boot. My goal is to create user-friendly, scalable solutions while continuously learning new technologies."}
             </p>
+
 
             {/* buttons and socials */}
             <div className='flex flex-col xl:flex-row items-center gap-8'>
