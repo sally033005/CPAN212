@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { BsArrow90DegRight, BsGithub } from 'react-icons/bs';
+import { MdOutlineSmartDisplay } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 import Link from 'next/link';
@@ -14,21 +15,21 @@ import SliderBtns from '@/components/SliderBtns';
 const myProjects = [
   {
     num: '01',
-    category: 'frontend',
-    title: 'project 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget felis pellentesque.',
+    category: 'Recipe Sharing Website',
+    title: 'Bare Bakes',
+    description: 'A recipe sharing website that allows users to browse baking recipes.',
     stack: [{ name: "Html 5" }, { name: "Css 3" }, { name: "Javascript" }],
-    image: '/assets/projects/project1.png',
-    github: "https://github.com/sally033005/project1.git",
+    image: '/assets/projects/project_barebakes.png',
+    demo: "https://cpan144-group7.vercel.app",
   },
   {
     num: '02',
-    category: 'fullstack',
-    title: 'project 2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget felis pellentesque.',
-    stack: [{ name: "Next.js" }, { name: "Tailwind.css" }, { name: "Node.js" }, { name: "MongoDB" }],
-    image: '/assets/projects/project2.png',
-    github: "https://github.com/sally033005/Bookstore",
+    category: 'Mobile Weather App',
+    title: 'Weathr.',
+    description: 'A weather application providing real-time forecasts and severe weather alerts. Built with React Native, it features a user-friendly interface and integrates with WeatherAPI for live weather data. The app allows users to search for locations, view current conditions, and receive notifications for severe weather events.',
+    stack: [{ name: "React Native" }, { name: "WeatherAPI" }, { name: "Redux" }, { name: "Animated API" }],
+    image: '/assets/projects/project_weathr.png',
+    demo: "https://snack.expo.dev/@sally033005/weathr",
   },
 ]
 
@@ -54,7 +55,10 @@ const Projects = () => {
                 {myProject.num}
               </div>
               <h2 className='text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize '>
-                {myProject.category} project
+                {myProject.title}
+              </h2>
+              <h2 className='text-[36px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize '>
+                {myProject.category}
               </h2>
               <p className='text-white/60 '>{myProject.description}</p>
               <ul className='flex gap-4 '>
@@ -71,14 +75,14 @@ const Projects = () => {
               </ul>
               <div className='border border-white/20 '></div>
               <div className='flex items-center gap-4'>
-                <Link href={myProject.github}>
+                <Link href={myProject.demo}>
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className='w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group '>
-                      <BsGithub className='text-white text-3xl group-hover:text-accent '/>
+                      <MdOutlineSmartDisplay className='text-white text-3xl group-hover:text-accent '/>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Github repository</p>
+                      <p>Live Demo</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

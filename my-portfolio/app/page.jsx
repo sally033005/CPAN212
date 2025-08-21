@@ -12,13 +12,14 @@ const Home = () => {
         <div className='flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24'>
           {/* text */}
           <div className='text-center xl:text-left order-2 xl:order-none '>
-            <span className='text-xl'>Computer Programming Student</span>
+            <span className='text-xl'>Full Stack Developer | Computer Programming Graduate</span>
             <h1 className='h1 mb-6'>
               Hello I'm <br /> <span className='text-accent'>Sally Cheung</span>
             </h1>
             <p className='max-w-[500px] mb-9 text-white/80 '>
-              I am a Computer Programming student at Humber College with a strong passion for software development.
-              I have hands-on experience in full-stack development, specializing in web technologies like React, Node.js, and Express.
+            I’m a Computer Programming graduate from Humber College with experience in full-stack development. 
+            I enjoy building responsive web applications using modern frameworks like Next.js, React, and Spring Boot. 
+            My goal is to create user-friendly, scalable solutions while continuously learning new technologies.
             </p>
             {/* buttons and socials */}
             <div className='flex flex-col xl:flex-row items-center gap-8'>

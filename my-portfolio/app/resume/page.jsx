@@ -5,8 +5,9 @@ import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
 
 const about = {
   title: 'About Me',
-  description: `I am a Computer Programming student at Humber College with a strong passion for software development. 
-  I have hands-on experience in full-stack development, specializing in web technologies like React, Node.js, and Express.`,
+  description: `I'm a Computer Programming graduate from Humber College with a focus on full-stack development. 
+  I build responsive and dynamic web applications using technologies like React, Next.js, Tailwind CSS, Node.js, and Express. 
+  I'm passionate about writing clean, scalable code and continuously expanding my skills to create user-centered solutions.`,  
   info: [
     {
       fieldName: 'Name',
@@ -14,11 +15,11 @@ const about = {
     },
     {
       fieldName: 'Phone',
-      value: '(+1) 123 123 1234',
+      value: '(+1) 647 855 3806',
     },
     {
       fieldName: 'Email',
-      value: 'sally@gmail.com',
+      value: 'sally033008@gmail.com',
     }
   ]
 }
@@ -49,7 +50,7 @@ const experience = {
 const education = {
   icon: '/asserts/resume/cap.svg',
   title: 'My Education',
-  description: 'I am currently studying Computer Programming at Humber College. I have learned various programming languages and technologies.',
+  description: 'I hold a diploma in Computer Programming and a bachelor’s degree in History. My education has equipped me with both technical and analytical skills to solve real-world problems.',
   items: [
     {
       institution: 'Humber College',
@@ -59,7 +60,7 @@ const education = {
     {
       institution: 'Lingnan University',
       degree: 'Bachelor of History',
-      duration: '2024 - 2017',
+      duration: '2013 - 2017',
     },
   ]
 }
