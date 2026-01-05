@@ -30,6 +30,15 @@ const myProjects = [
     image: '/assets/projects/project_weathr.png',
     demo: "https://snack.expo.dev/@sally033005/weathr",
   },
+  {
+    num: '03',
+    category: 'Flask Web Game',
+    title: 'Tic Tac Toe',
+    description: 'A modern Tic Tac Toe game built with Flask, featuring both Single-Player (AI) and Online Two-Player modes. Includes live updates, room codes, disconnection detection, win tracking, and a Minimax-powered AI with 3 difficulty levels.',
+    stack: [{ name: "Flask" }, { name: "Python" }, { name: "Minimax AI" }],
+    image: '/assets/projects/project_tictactoe.png',
+    demo: "https://flask-tictactoe.onrender.com/",
+  },
 ]
 
 const Projects = () => {
